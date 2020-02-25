@@ -1,15 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cookieSession= require('cookie-session');
-const passport
+const cookieSession = require('cookie-session');
+const passport = require('passport')
 const keys = require('./config/keys');
 require('./models/user')
 require('./services/passportService');
 
 const app = express();
 
+app.use(
+    cookieSession({
+        maxAge: 30*24*60*60*1000,
+        keys:[keys.cookieKey]
+    })
+)
 
-
+//telling passport to use cookies
+app.use(passport.initialize());
+app.use(passport.session());
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
     if (err) {
