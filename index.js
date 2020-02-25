@@ -1,17 +1,15 @@
 const express = require('express');
-//const cors = require('cors');
-//const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
+const cookieSession= require('cookie-session');
+const passport
 const keys = require('./config/keys');
 require('./models/user')
-require('./services/passportSer');
+require('./services/passportService');
 
 const app = express();
 
 
-//app.use(cors());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
+
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
     if (err) {
