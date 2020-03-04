@@ -1,10 +1,11 @@
 const passport = require('passport')
+const path = require('path');
 
 //exporting both route handles because 'app' is not defined
 module.exports = (app) => {
     //forward user request to google
     app.get('/google88a4f773616f82b9.html',(req,res)=>{
-        res.sendFile(path.join(__dirname+'/google88a4f773616f82b9.html'))
+        res.sendFile(path.join(__filename+'/../../google88a4f773616f82b9.html'))
     })
     // app.get('/auth/google',
     //     passport.authenticate('google', {
