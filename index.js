@@ -19,13 +19,13 @@ const app = express();
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
-    if (err) {
-        console.log("connection failed");
-        throw err;
-    }
-    console.log("connection success");
-});
+// mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
+//     if (err) {
+//         console.log("connection failed");
+//         throw err;
+//     }
+//     console.log("connection success");
+// });
 
 require('./routes/authRoutes')(app);
 
