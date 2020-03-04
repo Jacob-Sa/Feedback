@@ -10,6 +10,12 @@ module.exports = (app) => {
     //put user on hold and take the 'code' from the url and exchanging it for profile info
     app.get('/auth/google/callback', passport.authenticate('google'))
     
+    app.get('/auth/facebook',
+        passport.authenticate('facebook', {
+            scope:['user_friends'],
+        }))
+    app.get('/auth/facebook/callback', passport.authenticate('facebook'))    
+
     app.get('/api/logout', (req, res)=>{
         req.logout();
         res.send(req.user)
@@ -19,3 +25,5 @@ module.exports = (app) => {
         res.send(req.user);
     })
 };
+
+//, 'manage_pages'
