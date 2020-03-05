@@ -7,4 +7,5 @@ module.exports = {
     facebookClientSecret:'2101953ee655119b100e9a0e76f66a83'
 };
 
-//mongodb+srv://salomonyaacov:<password>@feedback-dev-rbr1e.mongodb.net/test?retryWrites=true&w=majority
+
+//mongodb+srv://salomonyaacov:14ma12iy@feedback-prod-edr8z.mongodb.net/feedback?retryWrites=true&w=majority
