@@ -6,7 +6,3 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-
-//googleClientID: 454922372678-ga972ms1p9bml1laji1bgjcdvs84hne0.apps.googleusercontent.com
-
-//googleClientSecret: oarRNeIyAGbv3_oky3PFHge4

@@ -12,7 +12,9 @@ module.exports = (app) => {
             scope: ['profile', 'email']
         }))
     //put user on hold and take the 'code' from the url and exchanging it for profile info
-    app.get('/auth/google/callback', passport.authenticate('google'))
+    app.get('/auth/google/callback', passport.authenticate('google'),(req,res)=>{
+        res.redirect('/surveys')
+    })
     
     app.get('/auth/facebook',
         passport.authenticate('facebook', {
@@ -22,12 +24,10 @@ module.exports = (app) => {
 
     app.get('/api/logout', (req, res)=>{
         req.logout();
-        res.send(req.user)
+        res.redirect('/');
     })
 
     app.get('/api/current_user', (req, res)=>{
         res.send(req.user);
     })
 };
-
-//, 'manage_pages'

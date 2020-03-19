@@ -23,20 +23,15 @@ passport.use(new GoogleStratgey({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
     callbackURL: '/auth/google/callback',
-    proxy:true
+    proxy: true
 },
-    (accessToken, refreshToken, profile, done) => {
-        User.findOne({ googleID: profile.id })
-            .then((existingUser) => {
-                if (existingUser) {
-                    done(null, existingUser)
-                } else {
-                    new User({ googleID: profile.id }).save()
-                        .then(user => {
-                            done(null, user)
-                        })
-                }
-            })
+    async (accessToken, refreshToken, profile, done) => {
+        const existingUser = await User.findOne({ googleID: profile.id })
+        if (existingUser) {
+            return done(null, existingUser)
+        }
+        const user = await new User({ googleID: profile.id }).save()
+        done(null, user)
     })
 );
 
@@ -45,17 +40,13 @@ passport.use(new FacebookStrategy({
     clientSecret: keys.facebookClientSecret,
     callbackURL: '/auth/facebook/callback'
 },
-    (accessToken, refreshToken, profile, done) => {
-       User.findOne({facebookID: profile.id})
-       .then((existingUser)=>{
-           if (existingUser) {
-               done(null, existingUser)
-           } else {
-               new User({facebookID: profile.id}).save()
-               .then(user=>{
-                   done(null, user)
-               })
-           }
-       })
+    async (accessToken, refreshToken, profile, done) => {
+        const existingUser = await User.findOne({ facebookID: profile.id })
+        if (existingUser) {
+            return done(null, existingUser)
+        } else {
+            const user = await new User({ facebookID: profile.id }).save()
+            done(null, user)
+        }
     })
 )
