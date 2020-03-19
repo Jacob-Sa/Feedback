@@ -4,9 +4,7 @@ const path = require('path');
 //exporting both route handles because 'app' is not defined
 module.exports = (app) => {
     //forward user request to google
-    app.get('/google88a4f773616f82b9.html',(req,res)=>{
-        res.sendFile(path.join(__filename+'/../../google88a4f773616f82b9.html'))
-    })
+    
     app.get('/auth/google',
         passport.authenticate('google', {
             scope: ['profile', 'email']
@@ -29,5 +27,10 @@ module.exports = (app) => {
 
     app.get('/api/current_user', (req, res)=>{
         res.send(req.user);
+    })
+
+    //enabling  using google-auth with heroku domain
+    app.get('/google88a4f773616f82b9.html',(req,res)=>{
+        res.sendFile(path.join(__filename+'/../../google88a4f773616f82b9.html'))
     })
 };
